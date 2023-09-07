@@ -1,12 +1,12 @@
 <template>
   <nav
-    class="sticky inset-0 py-5 z-10 block h-max w-full max-w-full backdrop-blur-2xl backdrop-saturate-200"
+    class="sticky inset-0 py-5 px-6 z-10 block h-max w-full max-w-full backdrop-blur-2xl backdrop-saturate-200"
   >
     <div class="flex items-center text-gray-900">
       <NuxtLink to="/" class="mr-4">
         <img src="/logo.png" />
       </NuxtLink>
-      <ul class="ml-auto mr-8 hidden items-center gap-6 lg:flex">
+      <ul class="ml-auto mr-8 hidden items-center gap-6 lg:flex text-white">
         <li
           class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
         >
@@ -29,11 +29,10 @@
         </li>
       </ul>
       <button
-        class="middle none center hidden rounded-lg bg-gradient-to-tr from-pink-600 to-pink-400 py-2 px-4 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
-        type="button"
-        data-ripple-light="true"
+        class="px-6 py-2 text-bgDarkColor font-semibold"
+        style="background: linear-gradient(229deg, #edc9f5 3.3%, #217ace 96.7%)"
       >
-        <span>Buy Now</span>
+        Sign in
       </button>
       <button
         class="middle none relative ml-auto h-6 max-h-[40px] w-6 max-w-[40px] rounded-lg text-center font-sans text-xs font-medium uppercase text-blue-gray-500 transition-all hover:bg-transparent focus:bg-transparent active:bg-transparent disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:hidden"
@@ -84,11 +83,12 @@
           <a class="flex items-center" href="#"> Docs </a>
         </li>
         <button
-          class="mb-2 block w-full rounded-lg bg-gradient-to-tr from-pink-600 to-pink-400 py-2 px-4 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-          type="button"
-          data-ripple-light="true"
+          class="px-6 py-2"
+          style="
+            background: linear-gradient(229deg, #edc9f5 3.3%, #217ace 96.7%);
+          "
         >
-          <span>Buy Now</span>
+          Buy Now
         </button>
       </ul>
     </div>

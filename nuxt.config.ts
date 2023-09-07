@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       API_BASE_URL: process.env.API_BASE_URL,
+      API_READ_TOKEN: process.env.API_READ_TOKEN
     },
   },
   app: {

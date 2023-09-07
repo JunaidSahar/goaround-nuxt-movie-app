@@ -9,7 +9,7 @@ export default {
     extend: {
       colors: {
         transparent: "transparent",
-        "bgColor": "#EAF4F4",
+        "primaryColor": "#EAF4F4",
         "bgDarkColor": '#02010a',
         "bgDark": '#232c31',
         "strokeColor": "#E5E5E5",

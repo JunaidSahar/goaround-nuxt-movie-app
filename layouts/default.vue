@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative bg-black h-screen">
     <Navbar />
     <div class="-mt-24">
       <NuxtPage />
