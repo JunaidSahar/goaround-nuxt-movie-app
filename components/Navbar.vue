@@ -1,8 +1,8 @@
 <template>
   <nav
-    class="sticky inset-0 py-5 px-6 z-10 block h-max w-full max-w-full backdrop-blur-2xl backdrop-saturate-200"
+    class="sticky inset-0 py-6 px-6 z-10 block h-max w-full bg-gradient-to-b from-black"
   >
-    <div class="flex items-center text-gray-900">
+    <div class="flex items-center container mx-auto text-gray-900">
       <NuxtLink to="/" class="mr-4">
         <img src="/logo.png" />
       </NuxtLink>
