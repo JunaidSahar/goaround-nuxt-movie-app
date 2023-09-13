@@ -1,5 +1,8 @@
 <template>
-  <NuxtLink v-if="movie?.id" :to="'/movie/'+movie?.id">
+  <NuxtLink
+    v-if="movie?.id"
+    :to="movie.media_type == 'tv' ? `/tv/${movie?.id}` : `/movie/${movie?.id}`"
+  >
     <div
       class="relative h-96 w-72 z-50 hover:scale-105 overflow-hidden transition-all"
       @mouseover="isDisplayed = true"
