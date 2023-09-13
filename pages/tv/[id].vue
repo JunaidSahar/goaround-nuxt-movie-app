@@ -1,11 +1,10 @@
 <template>
-  <div v-if="tv"
+  <div
+    v-if="tv"
     class="h-[950px] py-24 w-full flex flex-col items-center justify-end text-white"
     :style="`background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)),
     url('${
-      imageSizes?.base_url +
-      imageSizes?.backdrop_sizes?.[3] +
-      tv?.backdrop_path
+      imageSizes?.base_url + imageSizes?.backdrop_sizes?.[3] + tv?.backdrop_path
     }'); background-position: top;
     background-size: cover; `"
   >
@@ -36,31 +35,13 @@
             {{ tv.status }}
           </span>
         </div>
-        <!-- <div class="flex gap-2">
-          <p class="">Release Date:</p>
-          <span class="">
-            {{ tv.release_date }}
-          </span>
-        </div> -->
-        <!-- <div class="flex gap-2">
-          <p class="">Duration:</p>
-          <span class="">
-            {{ useConvertNumberToHours(movie.runtime) }}
-          </span>
-        </div> -->
-        <!-- <div class="flex gap-2">
-          <p class="">Director(s):</p>
-          <span class="" v-for="(item, index) in directors" :key="index">
+        <div class="flex gap-2">
+          <p class="">Creator(s):</p>
+          <span class="" v-for="(item, index) in creater" :key="index">
             {{ item.name }},
           </span>
-        </div> -->
-        <!-- <div class="flex gap-2">
-          <p class="">Writter(s):</p>
-          <span class="" v-for="(item, index) in writters" :key="index">
-            {{ item.name }},
-          </span>
-        </div> -->
-        <!-- <div class="flex gap-4">
+        </div>
+        <div class="flex gap-4">
           <MoviesDetailsModal>
             <vue-plyr>
               <div class="plyr__video-embed">
@@ -81,7 +62,8 @@
             <Icon name="ic:round-plus" />
             Add to Watch latter
           </button>
-        </div> -->
+        </div>
+
         <!-- {{ tv }} -->
       </div>
     </div>
@@ -95,10 +77,9 @@ import { useImageConfig } from "@/stores/ImageConfig";
 const imageSizes = useImageConfig().config;
 
 const tv = ref();
-const writters = ref();
 const route = useRoute();
 const config = useRuntimeConfig();
-const directors = ref([]);
+const creater = ref([]);
 const media = ref();
 
 axios
@@ -114,34 +95,31 @@ axios
     console.log(error);
   });
 
-// axios
-//   .get(config.public.API_BASE_URL + `movie/${route.params.id}/videos`, {
-//     headers: {
-//       Authorization: "Bearer " + config.public.API_READ_TOKEN,
-//     },
-//   })
-//   .then((response) => {
-//     media.value = response.data;
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
+axios
+  .get(config.public.API_BASE_URL + `tv/${route.params.id}/videos`, {
+    headers: {
+      Authorization: "Bearer " + config.public.API_READ_TOKEN,
+    },
+  })
+  .then((response) => {
+    media.value = response.data;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
-// axios
-//   .get(config.public.API_BASE_URL + `movie/${route.params.id}/credits`, {
-//     headers: {
-//       Authorization: "Bearer " + config.public.API_READ_TOKEN,
-//     },
-//   })
-//   .then((response) => {
-//     const crew = response.data.crew;
-//     const cast = response.data.cast;
-//     directors.value = crew.filter((e) => e.job === "Director");
-//     writters.value = crew.filter(
-//       (e) => e.job === "Writter" || e.job === "Story" || e.job === "Screenplay"
-//     );
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
+axios
+  .get(config.public.API_BASE_URL + `tv/${route.params.id}/credits`, {
+    headers: {
+      Authorization: "Bearer " + config.public.API_READ_TOKEN,
+    },
+  })
+  .then((response) => {
+    const crew = response.data.crew;
+    const cast = response.data.cast;
+    creater.value = crew.filter((e) => e.job === "Producer" || e.job === "Executive Producer");
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 </script>
