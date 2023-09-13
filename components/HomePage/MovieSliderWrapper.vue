@@ -1,6 +1,9 @@
 <template>
-  <div class="mt-6 container mx-auto">
-    <h3 class="text-2xl font-semibold text-white">{{ props.title }}</h3>
+  <div class="mt-0 container mx-auto space-y-6">
+    <div class="flex gap-4 justify-between items-center">
+      <h3 class="text-2xl font-semibold text-white">{{ props.title }}</h3>
+      <nuxt-link to="/" class="text-white hover:text-secondaryColor hover:underline">View more</nuxt-link>
+    </div>
     <Swiper
       class="courses-slider"
       :modules="[

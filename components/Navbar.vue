@@ -1,10 +1,10 @@
 <template>
   <nav
-    class="sticky inset-0 py-6 px-6 z-10 block h-max w-full bg-gradient-to-b from-black"
+    class="inset-0 py-6 px-6 z-10 block h-max w-full"
   >
-    <div class="flex items-center container mx-auto text-gray-900">
+    <div class="flex items-center container mx-auto text-white">
       <NuxtLink to="/" class="mr-4">
-        <img src="/logo.png" />
+        Go Around
       </NuxtLink>
       <ul class="ml-auto mr-8 hidden items-center gap-6 lg:flex text-white">
         <li

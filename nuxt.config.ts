@@ -39,8 +39,11 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-swiper'
   ],
+  plugins: [
+    { src: '~/plugins/plyr.client', mode: 'client' }
+  ],
   css: [
-    '~/assets/css/main.css'
+    '~/assets/css/main.css', "~/node_modules/vue-plyr/dist/vue-plyr.css"
   ],
   tailwindcss: {
     configPath: '~/tailwind.config.ts'
