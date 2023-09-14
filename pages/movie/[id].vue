@@ -83,16 +83,36 @@
             Add to Watch latter
           </button>
         </div>
-        {{ movie }}
+        <!-- {{ actors }} -->
+      </div>
+      <div class="mx-auto">
+        <img
+          :src="
+            imageSizes?.base_url +
+            imageSizes?.backdrop_sizes[3] +
+            movie?.poster_path
+          "
+          alt=""
+          class="w-72 shadow-lg border-2 rounded-lg"
+        />
       </div>
     </div>
   </div>
-  <!-- <p class="text-white">{{ media.results[0] }}</p> -->
+  <div class="flex gap-2 w-full bg-black">
+    <MoviesDetailsCastSlider title="Actors" :cast="actors" />
+  </div>
+  <div class="py-12 bg-black" v-if="media?.results.length">
+    <LazyVideosSlider title="Related Videos" :videos="media?.results" />
+  </div>
+  <div class="py-12 bg-black" v-if="relatedMovies?.length">
+    <MovieSliderWrapper title="Recommended for you" :movies="relatedMovies" />
+  </div>
 </template>
 
 <script setup>
 import axios from "axios";
 import { useImageConfig } from "@/stores/ImageConfig";
+import MovieSliderWrapper from "~/components/HomePage/MovieSliderWrapper.vue";
 const imageSizes = useImageConfig().config;
 
 const movie = ref();
@@ -101,6 +121,7 @@ const route = useRoute();
 const config = useRuntimeConfig();
 const directors = ref([]);
 const media = ref();
+const actors = ref();
 
 axios
   .get(config.public.API_BASE_URL + `movie/${route.params.id}`, {
@@ -141,6 +162,22 @@ axios
     writters.value = crew.filter(
       (e) => e.job === "Writter" || e.job === "Story" || e.job === "Screenplay"
     );
+    actors.value = cast.filter((e) => e.known_for_department === "Acting");
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+const relatedMovies = ref()
+
+axios
+  .get(config.public.API_BASE_URL + `movie/${route.params.id}/similar`, {
+    headers: {
+      Authorization: "Bearer " + config.public.API_READ_TOKEN,
+    },
+  })
+  .then((response) => {
+    relatedMovies.value = response.data.results;
   })
   .catch((error) => {
     console.log(error);

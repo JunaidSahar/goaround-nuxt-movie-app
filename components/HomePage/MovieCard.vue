@@ -10,9 +10,11 @@
     >
       <img
         :src="
-          imageConfig.base_url +
-          imageConfig.poster_sizes[5] +
           props.movie?.poster_path
+            ? imageConfig.base_url +
+              imageConfig.poster_sizes[5] +
+              props.movie?.poster_path
+            : 'https://valleyvintner.com/Merchant2/graphics/img-not-avail.gif'
         "
         alt="image"
         class="absolute h-full w-full top-0 left-0 z-20 overflow-hidden object-cover"
@@ -21,12 +23,16 @@
         v-if="isDisplayed"
         class="overlay flex p-3 bottom-0 relative z-30 h-full flex-col"
       >
-        <div class="h-full w-full z-50 flex flex-col justify-end">
+        <div class="h-full w-full z-50 flex flex-col justify-end gap-2">
           <h2 class="text-white text-2xl font-semibold">
             {{ props.movie.name || props.movie.title }}
           </h2>
           <span class="text-white text-sm line-clamp-3">
             {{ props.movie.overview }}
+          </span>
+          <span class="text-black font-semibold text-base bg-white px-3 rounded-full w-fit">
+            <Icon :name="props.movie.media_type == 'movie' ? 'mdi:movie-roll' : 'iconoir:tv'" />
+            {{ props.movie.media_type }}
           </span>
         </div>
       </div>

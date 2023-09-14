@@ -1,7 +1,7 @@
 <template>
   <div class="relative bg-black h-screen">
     <Navbar />
-    <div class="-mt-24">
+    <div class="pb-16">
       <NuxtPage />
     </div>
     <Footer />

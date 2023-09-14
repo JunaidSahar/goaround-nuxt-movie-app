@@ -35,7 +35,7 @@
             {{ tv.status }}
           </span>
         </div>
-        <div class="flex gap-2">
+        <div class="flex gap-2 flex-wrap">
           <p class="">Creator(s):</p>
           <span class="" v-for="(item, index) in creater" :key="index">
             {{ item.name }},
@@ -66,14 +66,29 @@
 
         <!-- {{ tv }} -->
       </div>
+      <div class="w-1/2">
+        <SeriesDetailsSeasonSlider
+          title="Season 1 Episodes"
+          :episodes="seasonOne?.episodes"
+        />
+      </div>
     </div>
   </div>
-  <!-- <p class="text-white">{{ media.results[0] }}</p> -->
+  <div class="flex gap-2 w-full bg-black pb-12">
+    <MoviesDetailsCastSlider title="Actors" :cast="actors" />
+  </div>
+  <div class="py-12 bg-black">
+    <LazyVideosSlider title="Related Videos" :videos="media?.results" />
+  </div>
+  <div class="py-12 bg-black">
+    <MovieSliderWrapper title="Recommended for you" :movies="relatedMovies" />
+  </div>
 </template>
 
 <script setup>
 import axios from "axios";
 import { useImageConfig } from "@/stores/ImageConfig";
+import MovieSliderWrapper from "~/components/HomePage/MovieSliderWrapper.vue";
 const imageSizes = useImageConfig().config;
 
 const tv = ref();
@@ -81,6 +96,7 @@ const route = useRoute();
 const config = useRuntimeConfig();
 const creater = ref([]);
 const media = ref();
+const actors = ref();
 
 axios
   .get(config.public.API_BASE_URL + `tv/${route.params.id}`, {
@@ -117,7 +133,39 @@ axios
   .then((response) => {
     const crew = response.data.crew;
     const cast = response.data.cast;
-    creater.value = crew.filter((e) => e.job === "Producer" || e.job === "Executive Producer");
+    creater.value = crew.filter(
+      (e) => e.job === "Producer" || e.job === "Executive Producer"
+    );
+    actors.value = cast.filter((e) => e.known_for_department === "Acting");
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+const seasonOne = ref();
+axios
+  .get(config.public.API_BASE_URL + `tv/${route.params.id}/season/1`, {
+    headers: {
+      Authorization: "Bearer " + config.public.API_READ_TOKEN,
+    },
+  })
+  .then((response) => {
+    const data = response.data;
+    seasonOne.value = data;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+const relatedMovies = ref();
+
+axios
+  .get(config.public.API_BASE_URL + `tv/${route.params.id}/similar`, {
+    headers: {
+      Authorization: "Bearer " + config.public.API_READ_TOKEN,
+    },
+  })
+  .then((response) => {
+    relatedMovies.value = response.data.results;
   })
   .catch((error) => {
     console.log(error);
