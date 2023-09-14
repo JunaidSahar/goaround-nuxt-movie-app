@@ -46,7 +46,10 @@
       }"
     >
       <SwiperSlide v-for="x in props.cast" :key="x">
-        <div class="flex flex-col items-center justify-center gap-2 text-center">
+        <NuxtLink
+          :to="'/actors/' + x.id + '/'"
+          class="flex flex-col items-center justify-center gap-2 text-center"
+        >
           <div>
             <img
               :src="
@@ -66,7 +69,7 @@
             </h4>
             <p class="text-white">{{ x.character }}</p>
           </div>
-        </div>
+        </NuxtLink>
       </SwiperSlide>
     </Swiper>
   </div>

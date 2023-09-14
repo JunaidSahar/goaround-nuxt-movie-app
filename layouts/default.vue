@@ -24,3 +24,12 @@ axios
     useImageConfig().config = ImagesData.value;
   });
 </script>
+
+<style>
+.courses-slider .swiper-button-prev {
+  color: aliceblue !important;
+}
+.courses-slider .swiper-button-next {
+  color: aliceblue !important;
+}
+</style>

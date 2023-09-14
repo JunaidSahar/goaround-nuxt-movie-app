@@ -105,7 +105,7 @@
     <LazyVideosSlider title="Related Videos" :videos="media?.results" />
   </div>
   <div class="py-12 bg-black" v-if="relatedMovies?.length">
-    <MovieSliderWrapper title="Recommended for you" :movies="relatedMovies" />
+    <MovieSliderWrapper title="You May Also Like" :movies="relatedMovies" />
   </div>
 </template>
 
