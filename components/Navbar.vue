@@ -3,7 +3,9 @@
     class="sticky bg-black inset-0 py-6 px-6 z-10 block h-max w-full border-b"
   >
     <div class="flex items-center container mx-auto gap-4 text-white">
-      <NuxtLink to="/" class="mr-4"> Go Around </NuxtLink>
+      <NuxtLink to="/" class="mr-4">
+        <img src="/logo.png" alt="logo" class="h-6" />
+      </NuxtLink>
 
       <form @submit.prevent="getUserInput" class="flex-1">
         <div class="relative max-w-xl">

@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "Al Baseer",
+      title: "Mindsmack - Online tv",
       meta: [
         { charset: "utf-8" },
         {
@@ -25,7 +25,7 @@ export default defineNuxtConfig({
       link: [
         {
           rel: 'icon',
-          type: 'image/webp',
+          type: 'image/png',
           href: '/favicon.png'
         }
       ]
