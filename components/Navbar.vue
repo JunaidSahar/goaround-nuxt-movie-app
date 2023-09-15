@@ -2,12 +2,12 @@
   <nav
     class="sticky bg-black inset-0 py-6 px-6 z-10 block h-max w-full border-b"
   >
-    <div class="flex items-center container mx-auto gap-4 text-white">
+    <div class="flex items-center lg:container mx-auto gap-4 text-white">
       <NuxtLink to="/" class="mr-4">
-        <img src="/logo.png" alt="logo" class="h-6" />
+        <img src="/logo.png" alt="logo" class="md:h-6 h-5" />
       </NuxtLink>
 
-      <form @submit.prevent="getUserInput" class="flex-1">
+      <form @submit.prevent="getUserInput" class="flex-1 md:block hidden">
         <div class="relative max-w-xl">
           <div
             class="absolute inset-y-0 left-0 flex min-w-fit items-center pl-3 pointer-events-none"
@@ -29,6 +29,9 @@
           </button>
         </div>
       </form>
+      <button class="border px-2 ml-auto md:hidden block">
+        <Icon name="solar:hamburger-menu-linear" class="text-white" />
+      </button>
 
       <ul class="ml-auto mr-8 hidden items-center gap-6 lg:flex text-white">
         <li
@@ -53,8 +56,7 @@
         </li>
       </ul>
       <button
-        class="px-6 py-2 text-bgDarkColor font-semibold"
-        style="background: linear-gradient(229deg, #edc9f5 3.3%, #217ace 96.7%)"
+        class="px-6 py-2 text-black font-semibold bg-white md:block hidden"
       >
         Sign in
       </button>

@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="movie"
-    class="h-[950px] py-24 w-full flex flex-col items-center justify-end text-white"
+    class="md:h-[950px] py-24 w-full flex flex-col items-center justify-end text-white"
     :style="`background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)),
     url('${
       imageSizes?.base_url +
@@ -10,20 +10,20 @@
     }'); background-position: top;
     background-size: cover; `"
   >
-    <div class="h-full flex gap-6 items-end container mx-auto justify-between">
-      <div class="max-w-3xl space-y-4">
+    <div class="h-full flex md:flex-row flex-col gap-8 items-end lg:container px-4 mx-auto justify-between">
+      <div class="md:max-w-3xl space-y-4">
         <div class="flex items-center font-medium gap-2 text-sm">
           <span
-            class="px-5 py-1 border border-white rounded-full"
+            class="px-5 py-1 border border-white rounded-full md:text-base text-sm"
             v-for="(item, index) in movie?.genres"
             :key="index"
             >{{ item.name }}</span
           >
         </div>
-        <h1 class="text-5xl font-semibold">{{ movie?.title }}</h1>
-        <p class="text-lg">{{ movie?.overview }}</p>
+        <h1 class="md:text-5xl text-4xl font-semibold">{{ movie?.title }}</h1>
+        <p class="md:text-lg text-sm">{{ movie?.overview }}</p>
         <div class="flex gap-2">
-          <p class="">Average Rating:</p>
+          <p class="md:text-base text-sm">Average Rating:</p>
           <span
             class="bg-secondaryColor flex gap-1 w-fit items-center px-3 rounded-full text-black font-semibold"
           >
@@ -32,31 +32,31 @@
           </span>
         </div>
         <div class="flex gap-2">
-          <p class="">Status:</p>
+          <p class="md:text-base text-sm">Status:</p>
           <span class="">
             {{ movie.status }}
           </span>
         </div>
         <div class="flex gap-2">
-          <p class="">Release Date:</p>
+          <p class="md:text-base text-sm">Release Date:</p>
           <span class="">
             {{ movie.release_date }}
           </span>
         </div>
         <div class="flex gap-2">
-          <p class="">Duration:</p>
+          <p class="md:text-base text-sm">Duration:</p>
           <span class="">
             {{ useConvertNumberToHours(movie.runtime) }}
           </span>
         </div>
         <div class="flex gap-2">
-          <p class="">Director(s):</p>
+          <p class="md:text-base text-sm">Director(s):</p>
           <span class="" v-for="(item, index) in directors" :key="index">
             {{ item.name }},
           </span>
         </div>
         <div class="flex gap-2">
-          <p class="">Writter(s):</p>
+          <p class="md:text-base text-sm">Writter(s):</p>
           <span class="" v-for="(item, index) in writters" :key="index">
             {{ item.name }},
           </span>
@@ -93,15 +93,15 @@
             movie?.poster_path
           "
           alt=""
-          class="w-72 shadow-lg border-2 rounded-lg"
+          class="md:w-72 shadow-lg border-2 rounded-lg"
         />
       </div>
     </div>
   </div>
-  <div class="flex gap-2 w-full bg-black">
+  <div class="flex gap-2 w-full bg-black px-4">
     <MoviesDetailsCastSlider title="Actors" :cast="actors" />
   </div>
-  <div class="py-12 bg-black" v-if="media?.results.length">
+  <div class="py-12 bg-black px-4" v-if="media?.results.length">
     <LazyVideosSlider title="Related Videos" :videos="media?.results" />
   </div>
   <div class="py-12 bg-black" v-if="relatedMovies?.length">
