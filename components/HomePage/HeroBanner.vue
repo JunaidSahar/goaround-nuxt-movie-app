@@ -69,7 +69,7 @@ getRandomMovie();
 
 const config = useRuntimeConfig();
 axios
-  .get(config.public.API_BASE_URL + "movie/upcoming/", {
+  .get(config.public.API_BASE_URL + "movie/upcoming", {
     headers: {
       Authorization: "Bearer " + config.public.API_READ_TOKEN,
     },
